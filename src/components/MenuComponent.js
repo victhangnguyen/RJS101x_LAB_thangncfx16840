@@ -7,6 +7,7 @@ import {
   CardBody,
   CardTitle,
 } from 'reactstrap';
+import DishDetail from './DishdetailComponent';
 
 class Menu extends React.Component {
   constructor(props) {
@@ -17,6 +18,8 @@ class Menu extends React.Component {
       selectedDish: null,
     };
   }
+
+  componentDidMount() {}
 
   onDishSelect(dish) {
     this.setState({
@@ -43,7 +46,6 @@ class Menu extends React.Component {
   }
 
   render() {
-    console.log('this.state: ', this.state);
     //! variable expression
     const menu = this.props.dishes.map((dish) => {
       return (
@@ -61,7 +63,7 @@ class Menu extends React.Component {
     return (
       <div className="container">
         <div className="row">{menu}</div>
-        <div className="row">{this.renderDish(this.state.selectedDish)}</div>
+        <DishDetail dish={this.state.selectedDish} />
       </div>
     );
   }
