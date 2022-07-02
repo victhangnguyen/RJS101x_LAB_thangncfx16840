@@ -7,42 +7,24 @@ import {
   CardBody,
   CardTitle,
 } from 'reactstrap';
-import DishDetail from './DishdetailComponent';
 
 class Menu extends React.Component {
   constructor(props) {
-    //! ref React.Component constructor
     super(props);
-    //! all the dishes information from instructions
-    this.state = {
-      selectedDish: null,
-    };
-  }
-
-  componentDidMount() {}
-
-  onDishSelect(dish) {
-    this.setState({
-      selectedDish: dish,
-    });
   }
 
   renderDish(dish) {
-    if (dish !== null) {
-      //! render new Card with selected Dish
-      return (
-        <Card>
-          <CardImg width="100%" src={dish.image} alt={dish.name} />
-          <CardBody>
-            <CardTitle className="fw-bold">{dish.name}</CardTitle>
-            <CardText>{dish.description}</CardText>
-          </CardBody>
-        </Card>
-      );
-    } else {
-      //! render Empty Fragment
-      return <div></div>;
-    }
+    if (dish === null) return <></>;
+    //! render new Card with selected Dish
+    return (
+      <Card>
+        <CardImg width="100%" src={dish.image} alt={dish.name} />
+        <CardBody>
+          <CardTitle className="fw-bold">{dish.name}</CardTitle>
+          <CardText>{dish.description}</CardText>
+        </CardBody>
+      </Card>
+    );
   }
 
   render() {
@@ -50,7 +32,7 @@ class Menu extends React.Component {
     const menu = this.props.dishes.map((dish) => {
       return (
         <div key={dish.id} className="col-12 col-md-5 m-1">
-          <Card onClick={() => this.onDishSelect(dish)}>
+          <Card onClick={() => this.props.onClick(dish.id)}>
             <CardImg width="100%" src={dish.image} alt={dish.name} />
             <CardImgOverlay>
               <CardTitle className="fw-bold">{dish.name}</CardTitle>
@@ -63,7 +45,6 @@ class Menu extends React.Component {
     return (
       <div className="container">
         <div className="row">{menu}</div>
-        <DishDetail dish={this.state.selectedDish} />
       </div>
     );
   }

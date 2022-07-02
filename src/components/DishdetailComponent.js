@@ -16,7 +16,6 @@ function renderDish(dish) {
   );
 }
 function renderComments(comments) {
-  console.log('comments: ', comments);
   if (comments != null) {
     return (
       <div className="col-12 col-md-5 m-1">
@@ -27,7 +26,13 @@ function renderComments(comments) {
               <li key={comment.id}>
                 <p>{comment.comment}</p>
                 <p>
-                  -- {comment.author} {comment.date}
+                  -- {comment.author}
+                  {', '}
+                  {new Intl.DateTimeFormat('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: '2-digit',
+                  }).format(new Date(Date.parse(comment.date)))}
                 </p>
               </li>
             );
@@ -40,12 +45,12 @@ function renderComments(comments) {
   }
 }
 
+//! Presentational Component
 class DishDetail extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
-    // console.log('this.props: ', this.props);
     return (
       <div className="container">
         <div className="row">
