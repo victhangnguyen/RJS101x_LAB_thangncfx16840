@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 //! import Bootstrap before index.css
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+import 'bootstrap-social/bootstrap-social.css';
 import './index.css'; //! index.css override the default Bootstrap classes
 import App from './App';
 import reportWebVitals from './reportWebVitals';
