@@ -1,5 +1,7 @@
-//! CREATE CONTAINER COMPONENT
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+//! imp Components
+import Home from './HomeComponent';
 import Menu from './MenuComponent';
 import DishDetail from './DishdetailComponent';
 import Header from './HeaderComponent';
@@ -13,31 +15,28 @@ class Main extends React.Component {
     super(props);
     this.state = {
       dishes: DISHES,
-      selectedDish: null, //! dishId
+      // selectedDish: null, //! dishId
     };
   }
 
-  onDishSelect(dishId) {
-    this.setState({
-      selectedDish: dishId,
-    });
-  }
+  // onDishSelect(dishId) {
+  //   this.setState({
+  //     selectedDish: dishId,
+  //   });
+  // }
 
   render() {
+    const HomePage = () => <Home />;
+
     return (
       <div className="App">
         <Header />
-        <Menu
-          dishes={this.state.dishes}
-          onClick={(dishId) => this.onDishSelect(dishId)}
-        />
-        <DishDetail
-          dish={
-            this.state.dishes.filter(
-              (dish) => dish.id === this.state.selectedDish
-            )[0]
-          }
-        />
+        <Routes>
+          <Route path="home" element={<Home />} />
+          <Route path="menu" element={<Menu dishes={this.state.dishes} />} />
+
+          <Route path="*" element={HomePage()} />
+        </Routes>
         <Footer />
       </div>
     );

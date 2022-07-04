@@ -1,0 +1,30 @@
+[33medc660e[m[33m ([m[1;36mHEAD -> [m[1;32mLAB05_1[m[33m, [m[1;31morigin/LAB05_1[m[33m)[m HEAD@{0}: commit: Header and Footer
+[33med6e9e2[m[33m ([m[1;31morigin/LAB04_2[m[33m, [m[1;32mLAB04_2[m[33m)[m HEAD@{1}: reset: moving to HEAD^
+[33m1d9b3b1[m HEAD@{2}: reset: moving to HEAD^
+[33m47ea0d7[m HEAD@{3}: commit: Header and Footer
+[33m1d9b3b1[m HEAD@{4}: commit: Header and Footer
+[33med6e9e2[m[33m ([m[1;31morigin/LAB04_2[m[33m, [m[1;32mLAB04_2[m[33m)[m HEAD@{5}: checkout: moving from LAB02_2 to LAB05_1
+[33mbbaadec[m[33m ([m[1;31morigin/LAB02_2[m[33m, [m[1;32mLAB02_2[m[33m)[m HEAD@{6}: checkout: moving from LAB05_1 to LAB02_2
+[33med6e9e2[m[33m ([m[1;31morigin/LAB04_2[m[33m, [m[1;32mLAB04_2[m[33m)[m HEAD@{7}: checkout: moving from LAB03_1 to LAB05_1
+[33me41f9f3[m[33m ([m[1;31morigin/LAB03_1[m[33m, [m[1;32mLAB03_1[m[33m)[m HEAD@{8}: checkout: moving from LAB04_1 to LAB03_1
+[33m3070d90[m[33m ([m[1;31morigin/LAB04_1[m[33m, [m[1;32mLAB04_1[m[33m)[m HEAD@{9}: checkout: moving from LAB02_1 to LAB04_1
+[33med77a91[m[33m ([m[1;31morigin/LAB02_1[m[33m, [m[1;32mLAB02_1[m[33m)[m HEAD@{10}: checkout: moving from LAB04_2 to LAB02_1
+[33med6e9e2[m[33m ([m[1;31morigin/LAB04_2[m[33m, [m[1;32mLAB04_2[m[33m)[m HEAD@{11}: commit: Functional Components
+[33m3070d90[m[33m ([m[1;31morigin/LAB04_1[m[33m, [m[1;32mLAB04_1[m[33m)[m HEAD@{12}: checkout: moving from LAB04_1 to LAB04_2
+[33m3070d90[m[33m ([m[1;31morigin/LAB04_1[m[33m, [m[1;32mLAB04_1[m[33m)[m HEAD@{13}: checkout: moving from LAB04 to LAB04_1
+[33m89cfba3[m HEAD@{14}: checkout: moving from LAB04_2 to LAB04
+[33m3070d90[m[33m ([m[1;31morigin/LAB04_1[m[33m, [m[1;32mLAB04_1[m[33m)[m HEAD@{15}: checkout: moving from 3070d90adcf72cd2abaa4dfee2fafa77b9de20f1 to LAB04_2
+[33m3070d90[m[33m ([m[1;31morigin/LAB04_1[m[33m, [m[1;32mLAB04_1[m[33m)[m HEAD@{16}: checkout: moving from LAB04_2 to 3070d90
+[33m3070d90[m[33m ([m[1;31morigin/LAB04_1[m[33m, [m[1;32mLAB04_1[m[33m)[m HEAD@{17}: checkout: moving from LAB04_1 to LAB04_2
+[33m3070d90[m[33m ([m[1;31morigin/LAB04_1[m[33m, [m[1;32mLAB04_1[m[33m)[m HEAD@{18}: checkout: moving from LAB04 to LAB04_1
+[33m89cfba3[m HEAD@{19}: checkout: moving from LAB04_1 to LAB04
+[33m89cfba3[m HEAD@{20}: checkout: moving from LAB04 to LAB04_1
+[33m89cfba3[m HEAD@{21}: commit: Functional Components
+[33m3070d90[m[33m ([m[1;31morigin/LAB04_1[m[33m, [m[1;32mLAB04_1[m[33m)[m HEAD@{22}: commit: Presentational and Container Components
+[33m9dec86a[m[33m ([m[1;31morigin/EXERCISE01[m[33m, [m[1;32mEXERCISE01[m[33m)[m HEAD@{23}: checkout: moving from EXERCISE01 to LAB04
+[33m9dec86a[m[33m ([m[1;31morigin/EXERCISE01[m[33m, [m[1;32mEXERCISE01[m[33m)[m HEAD@{24}: commit: Exercise 1: React Components
+[33m6842948[m[33m ([m[1;31morigin/LAB03_2[m[33m, [m[1;32mLAB03_2[m[33m)[m HEAD@{25}: checkout: moving from LAB03_2 to EXERCISE01
+[33m6842948[m[33m ([m[1;31morigin/LAB03_2[m[33m, [m[1;32mLAB03_2[m[33m)[m HEAD@{26}: commit: Components Part 2
+[33me41f9f3[m[33m ([m[1;31morigin/LAB03_1[m[33m, [m[1;32mLAB03_1[m[33m)[m HEAD@{27}: checkout: moving from LAB03_1 to LAB03_2
+[33me41f9f3[m[33m ([m[1;31morigin/LAB03_1[m[33m, [m[1;32mLAB03_1[m[33m)[m HEAD@{28}: checkout: moving from main to LAB03_1
+[33m3b36059[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{29}: clone: from https://github.com/victhangnguyen/RJS101x_LAB.git
