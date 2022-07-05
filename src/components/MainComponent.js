@@ -1,12 +1,13 @@
 import React from 'react';
 import { Routes, Route, useParams } from 'react-router-dom';
 //! imp Components
-import Home from './HomeComponent';
-import Menu from './MenuComponent';
-import Contact from './ContactComponent';
-import DishDetail from './DishdetailComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
+import Home from './HomeComponent';
+import Menu from './MenuComponent';
+import DishDetail from './DishdetailComponent';
+import Contact from './ContactComponent';
+import About from './AboutComponent';
 
 //! import shared
 import { DISHES } from '../shared/dishes';
@@ -76,6 +77,7 @@ class Main extends React.Component {
           <Route path="/menu" element={<Menu dishes={this.state.dishes} />} />
           <Route path="/menu/:dishId" element={<DishWithId />} />
           <Route path="/contactus" element={<Contact />} />
+          <Route path="/aboutus" element={<About leaders={this.state.leaders}/>} />
           <Route
             path="*"
             element={
