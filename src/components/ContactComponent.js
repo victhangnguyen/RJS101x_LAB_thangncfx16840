@@ -46,7 +46,7 @@ class Contact extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('Current State is: ', JSON.stringify(this.state));
+    // console.log('Current State is: ', JSON.stringify(this.state));
   }
 
   handleBlur = (field) => (evt) => {
@@ -99,7 +99,7 @@ class Contact extends React.Component {
       this.state.telnum,
       this.state.email
     );
-    console.log('erros: ', errors);
+    // console.log('erros: ', errors);
 
     return (
       <div className="container">
