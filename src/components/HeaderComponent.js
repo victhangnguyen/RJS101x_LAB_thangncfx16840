@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react"
 import {
   Navbar,
   NavbarBrand,
@@ -14,46 +14,47 @@ import {
   FormGroup,
   Label,
   Input,
-} from 'reactstrap';
+} from "reactstrap"
 
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom"
 
-import Jumbotron from './JumbotronComponent';
+import Jumbotron from "./JumbotronComponent"
 
 class Header extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       isNavOpen: false,
       isModalOpen: false,
-    };
-    this.toggleNav = this.toggleNav.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
+    }
+
+    this.toggleNav = this.toggleNav.bind(this)
+    this.toggleModal = this.toggleModal.bind(this)
+    this.handleLogin = this.handleLogin.bind(this)
   }
 
   toggleNav() {
     // console.log('nowThis: ', this); //! __DEBUG __this
-    this.setState({ isNavOpen: !this.state.isNavOpen });
+    this.setState({ isNavOpen: !this.state.isNavOpen })
   }
 
   toggleModal() {
     this.setState({
       isModalOpen: !this.state.isModalOpen,
-    });
+    })
   }
 
   handleLogin(e) {
-    e.preventDefault();
-    this.toggleModal();
+    e.preventDefault()
+    this.toggleModal()
     alert(
-      'Username: ' +
+      "Username: " +
         this.username.value +
-        'Password: ' +
+        "Password: " +
         this.password.value +
-        'remember me: ' +
+        "remember me: " +
         this.remember.checked
-    );
+    )
   }
 
   render() {
@@ -61,7 +62,7 @@ class Header extends React.Component {
       <React.Fragment>
         <Navbar dark expand="md">
           <div className="container">
-            <NavbarBrand className="mr-auto" href="#">
+            <NavbarBrand className="mr-auto" href="/">
               <img
                 src="assets/images/logo.png"
                 alt="Ristorante Con Fusion"
@@ -90,7 +91,7 @@ class Header extends React.Component {
                 <NavItem>
                   <NavLink className="nav-link" to="/contactus">
                     <span className="fa fa-address-card fa-lg">
-                      {' '}
+                      {" "}
                       Contact Us
                     </span>
                   </NavLink>
@@ -169,8 +170,8 @@ class Header extends React.Component {
           </ModalBody>
         </Modal>
       </React.Fragment>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header
