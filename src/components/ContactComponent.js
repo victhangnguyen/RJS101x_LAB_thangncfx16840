@@ -10,20 +10,38 @@ import {
   Col,
   FormFeedback,
 } from 'reactstrap';
+import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 
 const Contact = () => {
   const formik = useFormik({
     initialValues: {
-      firstname: '',
-      lastname: '',
-      telnum: '',
+      firstName: '',
+      lastName: '',
+      telNum: '',
       email: '',
       agree: false,
       contactType: 'Tel.',
       message: '',
     },
+    validationSchema: Yup.object({
+      firstName: Yup.string()
+        .required('Required')
+        .min(3, 'Must be greater then 2 characters')
+        .max(15, 'Must be 15 characters or less'),
+      lastName: Yup.string()
+        .required('Required')
+        .min(3, 'Must be greater then 2 characters')
+        .max(15, 'Must be 15 characters or less'),
+      telNum: Yup.string('Must be a number')
+        .matches(/^[0-9]+$/, 'Must be a number')
+        .required('Required')
+        .min(3, 'Must be greater then 2 characters')
+        .max(15, 'Must be 15 characters or less'),
+      email: Yup.string().email('Invalid email address').required('Required'),
+    }),
+
     onSubmit: (values) => {
       console.log(values);
       alert(JSON.stringify(values, null, 2));
@@ -31,56 +49,7 @@ const Contact = () => {
   });
 
   console.log('formik.values: ', formik.values); //! __DEBUG __props
-
-  const handleSubmit = function (e) {
-    e.preventDefault();
-    // console.log('Current State is: ', JSON.stringify(this.state));
-  };
-
-  // validate(firstname, lastname, telnum, email) {
-  //   const errors = {
-  //     firstname: '',
-  //     lastname: '',
-  //     telnum: '',
-  //     email: '',
-  //   };
-
-  //   // if (this.state.touched.firstname && firstname.length < 3)
-  //   if (this.state.touched.firstname && firstname.length < 3) {
-  //     errors.firstname = 'First name should be >= 3 characters';
-  //   } else if (this.state.touched.firstname?.length > 10) {
-  //     errors.firstname = 'First name should be <= 10 characters';
-  //   }
-
-  //   if (this.state.touched.lastname && lastname.length < 3) {
-  //     errors.lastname = 'Last name should be >= 3 characters';
-  //   } else if (this.state.touched.lastname?.length > 10) {
-  //     errors.lastname = 'Last name should be <= 10 characters';
-  //   }
-  //   //! this is not include any other characters
-  //   const reg = /^\d+$/;
-  //   if (this.state.touched.telnum && !reg.test(telnum)) {
-  //     errors.telnum = 'Tel. Number should contain only numbers';
-  //   }
-
-  //   if (
-  //     this.state.touched.email &&
-  //     email.split('').filter((x) => x === '@').length !== 1
-  //   ) {
-  //     errors.email = 'Email should contain a @ sign';
-  //   }
-
-  //   return errors;
-  // }
-
-  //! ~context component
-  // const errors = this.validate(
-  //   this.state.firstname,
-  //   this.state.lastname,
-  //   this.state.telnum,
-  //   this.state.email
-  // );
-  // console.log('erros: ', errors);
+  console.log('formik.errors: ', formik.errors); //! __DEBUG __props
 
   return (
     <div className="container">
@@ -150,60 +119,91 @@ const Contact = () => {
         <div className="col-12 col-md-9">
           <Form onSubmit={formik.handleSubmit}>
             <FormGroup row>
-              <Label htmlFor="firstname" md={2}>
+              <Label htmlFor="firstName" md={2}>
                 First name
               </Label>
               <Col md={10}>
                 {
-                  //! __firstname
+                  //! __firstName
                 }
                 <Input
+                  id="firstName"
+                  name="firstName"
                   type="text"
-                  id="firstname"
-                  name="firstname"
                   placeholder="Fist Name"
                   onChange={formik.handleChange}
-                  value={formik.values.firstname}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.firstName}
+                  valid={
+                    formik.touched.firstName &&
+                    formik.errors.firstName === undefined
+                  }
+                  invalid={
+                    formik.touched.firstName &&
+                    formik.errors.firstName !== undefined
+                  }
                 />
-                {/* <FormFeedback>{errors.firstname}</FormFeedback> */}
+                {formik.touched.firstName && formik.errors.firstName ? (
+                  <FormFeedback>{formik.errors.firstName}</FormFeedback>
+                ) : null}
               </Col>
             </FormGroup>
             <FormGroup row>
-              <Label for="lastname" md={2}>
+              <Label for="lastName" md={2}>
                 Last name
               </Label>
               <Col md={10}>
                 {
-                  //! __lastname
+                  //! __lastName
                 }
                 <Input
+                  id="lastName"
+                  name="lastName"
                   type="text"
-                  id="lastname"
-                  name="lastname"
                   placeholder="Last Name"
                   onChange={formik.handleChange}
-                  value={formik.values.lastname}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.lastName}
+                  valid={
+                    formik.touched.lastName &&
+                    formik.errors.lastName === undefined
+                  }
+                  invalid={
+                    formik.touched.lastName &&
+                    formik.errors.lastName !== undefined
+                  }
                 />
-                {/* <FormFeedback>{errors.lastname}</FormFeedback> */}
+                {formik.touched.lastName && formik.errors.lastName ? (
+                  <FormFeedback>{formik.errors.lastName}</FormFeedback>
+                ) : null}
               </Col>
             </FormGroup>
             <FormGroup row>
-              <Label for="telnum" md={2}>
+              <Label for="telNum" md={2}>
                 Contact Tel.
               </Label>
               <Col md={10}>
                 {
-                  //! __telnum
+                  //! __telNum
                 }
                 <Input
+                  id="telNum"
+                  name="telNum"
                   type="text"
-                  id="telnum"
-                  name="telnum"
                   placeholder="Tel. Number"
                   onChange={formik.handleChange}
-                  value={formik.values.telnum}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.telNum}
+                  valid={
+                    formik.touched.telNum && formik.errors.telNum === undefined
+                  }
+                  invalid={
+                    formik.touched.telNum && formik.errors.telNum !== undefined
+                  }
                 />
-                {/* <FormFeedback>{errors.telnum}</FormFeedback> */}
+                {formik.touched.telNum && formik.errors.telNum ? (
+                  <FormFeedback>{formik.errors.telNum}</FormFeedback>
+                ) : null}
               </Col>
             </FormGroup>
             <FormGroup row>
@@ -220,9 +220,18 @@ const Contact = () => {
                   name="email"
                   placeholder="Email"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   value={formik.values.email}
+                  valid={
+                    formik.touched.email && formik.errors.email === undefined
+                  }
+                  invalid={
+                    formik.touched.email && formik.errors.email !== undefined
+                  }
                 />
-                {/* <FormFeedback>{errors.email}</FormFeedback> */}
+                {formik.touched.email && formik.errors.email ? (
+                  <FormFeedback>{formik.errors.email}</FormFeedback>
+                ) : null}
               </Col>
             </FormGroup>
             <FormGroup row>
