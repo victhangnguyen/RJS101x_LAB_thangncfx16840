@@ -1,9 +1,37 @@
-import { PROMOTIONS } from '../../shared/promotions';
+import * as actionTypes from '../actionTypes';
 
-export const promotionsReducer = (state = PROMOTIONS, action) => {
+const initialState = {
+  isLoading: true,
+  errMess: null,
+  promotions: [],
+};
+
+export const promotionsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'value':
-      break;
+    case actionTypes.PROMOS_LOADING: //! pending
+      return {
+        ...state,
+        isLoading: true,
+        errMess: '',
+        promotions: [],
+      };
+    case actionTypes.PROMOS_FAILED: // rejected
+      const errMess = action.payload;
+      return {
+        ...state,
+        isLoading: false,
+        errMess: errMess,
+        promotions: [],
+      };
+
+    case actionTypes.ADD_PROMOS: //! fulfilled
+      const promotions = action.payload;
+      return {
+        ...state,
+        isLoading: false,
+        errMess: null,
+        promotions: promotions,
+      };
 
     default:
       return state;

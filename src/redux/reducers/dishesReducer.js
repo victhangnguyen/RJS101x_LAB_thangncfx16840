@@ -8,11 +8,12 @@ export const dishesReducer = (state = initialState, action) => {
   //reducers: {}
   switch (action.type) {
     case actionTypes.ADD_DISHES:
+      const dishes = action.payload;
       return {
         ...state,
         isLoading: false,
         errMess: null,
-        dishes: action.payload,
+        dishes: dishes,
       };
     case actionTypes.DISHES_LOADING:
       return {

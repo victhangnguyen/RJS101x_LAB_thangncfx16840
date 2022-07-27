@@ -19,6 +19,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
+import { baseUrl } from '../shared/baseUrl';
 //! imp Components
 import { Loading } from './LoadingComponent';
 
@@ -27,7 +28,7 @@ function RenderDish({ dish }) {
   return (
     <div className="col-12 col-md-5 m-1">
       <Card>
-        <CardImg src={dish.image}></CardImg>
+        <CardImg src={baseUrl + dish.image}></CardImg>
         <CardBody>
           <CardTitle className="fw-bold">{dish.name}</CardTitle>
           <CardText>{dish.description}</CardText>

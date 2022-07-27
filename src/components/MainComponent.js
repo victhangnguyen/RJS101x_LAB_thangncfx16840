@@ -12,6 +12,9 @@ import About from './AboutComponent';
 //! imp Redux Actions
 import { addComment } from '../redux/actions/commentActions';
 import { fetchDishes } from '../redux/actions/dishActions';
+import { fetchComments } from '../redux/actions/commentActions';
+import { fetchPromos } from '../redux/actions/promotionActions';
+import { fetchLeaders } from '../redux/actions/leaderActions';
 
 class Main extends React.Component {
   // constructor(props) {
@@ -21,6 +24,9 @@ class Main extends React.Component {
   componentDidMount() {
     console.log('%cDidMount', 'color: red; font-weight: bold');
     this.props.fetchDishes();
+    this.props.fetchComments();
+    this.props.fetchPromos();
+    this.props.fetchLeaders();
   }
 
   render() {
@@ -39,9 +45,10 @@ class Main extends React.Component {
           }
           isLoading={this.props.dishes.isLoading}
           errMess={this.props.dishes.errMess}
-          comments={this.props.comments.filter(
+          comments={this.props.comments.comments.filter(
             (comment) => comment.dishId === parseInt(params.dishId, 10)
           )}
+          commentsErrMess={this.props.comments.errMess}
           addComment={this.props.addComment}
         />
       );
@@ -60,13 +67,19 @@ class Main extends React.Component {
                 dish={
                   this.props.dishes.dishes.filter((dish) => dish.featured)[0]
                 }
+                promosLoading={this.props.promotions.isLoading}
+                promosErrMess={this.props.promotions.errMess}
                 promotion={
-                  this.props.promotions.filter(
+                  this.props.promotions.promotions.filter(
                     (promotion) => promotion.featured
                   )[0]
                 }
+                leadersLoading={this.props.leaders.isLoading}
+                leadersErrMess={this.props.leaders.errMess}
                 leader={
-                  this.props.leaders.filter((leader) => leader.featured)[0]
+                  this.props.leaders.leaders.filter(
+                    (leader) => leader.featured
+                  )[0]
                 }
               />
             }
@@ -75,7 +88,7 @@ class Main extends React.Component {
             path="/menu"
             element={
               <Menu
-                dishes={this.props.dishes?.dishes}
+                dishes={this.props.dishes.dishes}
                 isLoading={this.props.dishes.isLoading}
                 errMess={this.props.dishes.errMess}
               />
@@ -85,7 +98,7 @@ class Main extends React.Component {
           <Route path="/contactus" element={<Contact />} />
           <Route
             path="/aboutus"
-            element={<About leaders={this.props.leaders} />}
+            element={<About leaders={this.props.leaders.leaders} />}
           />
           <Route
             path="*"
@@ -95,12 +108,14 @@ class Main extends React.Component {
                   this.props.dishes.dishes.filter((dish) => dish.featured)[0]
                 }
                 promotion={
-                  this.props.promotions.filter(
+                  this.props.promotions.promotions.filter(
                     (promotion) => promotion.featured
                   )[0]
                 }
                 leader={
-                  this.props.leaders.filter((leader) => leader.featured)[0]
+                  this.props.leaders.leaders.filter(
+                    (leader) => leader.featured
+                  )[0]
                 }
               />
             }
@@ -117,6 +132,9 @@ const mapDispatchToProps = (dispatch) => {
     addComment: (dishId, rating, author, comment) =>
       dispatch(addComment(dishId, rating, author, comment)),
     fetchDishes: () => dispatch(fetchDishes()),
+    fetchComments: () => dispatch(fetchComments),
+    fetchPromos: () => dispatch(fetchPromos()),
+    fetchLeaders: () => dispatch(fetchLeaders()),
   };
 };
 

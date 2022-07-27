@@ -1,14 +1,7 @@
 import * as actionTypes from '../actionTypes';
-import { DISHES } from '../../shared/dishes.js';
+import { baseUrl } from '../../shared/baseUrl';
 
 //! redux-thunk
-export const fetchDishes = () => (dispatch, getState) => {
-  console.log('getState(): ', getState());
-  dispatch(dishesLoading(true));
-  setTimeout(() => {
-    dispatch(addDishes(DISHES));
-  }, 2000);
-};
 
 export const dishesLoading = () => ({
   type: actionTypes.DISHES_LOADING,
@@ -23,3 +16,11 @@ export const addDishes = (dishes) => ({
   type: actionTypes.ADD_DISHES,
   payload: dishes,
 });
+
+export const fetchDishes = () => (dispatch) => {
+  dispatch(dishesLoading());
+  return fetch(baseUrl + 'dishes')
+    .then((res) => res.json())
+    .then((dishes) => dispatch(addDishes(dishes)))
+    .catch((err) => dispatch(dishesFailded(err)));
+};
