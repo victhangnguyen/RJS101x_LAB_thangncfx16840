@@ -11,11 +11,17 @@ import Contact from './ContactComponent';
 import About from './AboutComponent';
 //! imp Redux Actions
 import { addComment } from '../redux/actions/commentActions';
+import { fetchDishes } from '../redux/actions/dishActions';
 
 class Main extends React.Component {
   // constructor(props) {
   //   super(props);
   // }
+
+  componentDidMount() {
+    console.log('%cDidMount', 'color: red; font-weight: bold');
+    this.props.fetchDishes();
+  }
 
   render() {
     //!
@@ -27,10 +33,12 @@ class Main extends React.Component {
       return (
         <DishDetail
           dish={
-            this.props.dishes.filter(
+            this.props.dishes.dishes.filter(
               (dish) => dish.id === parseInt(params.dishId, 10)
             )[0]
           }
+          isLoading={this.props.dishes.isLoading}
+          errMess={this.props.dishes.errMess}
           comments={this.props.comments.filter(
             (comment) => comment.dishId === parseInt(params.dishId, 10)
           )}
@@ -47,7 +55,11 @@ class Main extends React.Component {
             path="home"
             element={
               <Home
-                dish={this.props.dishes.filter((dish) => dish.featured)[0]}
+                dishesLoading={this.props.dishes.isLoading}
+                dishesErrMess={this.props.dishes.errMess}
+                dish={
+                  this.props.dishes.dishes.filter((dish) => dish.featured)[0]
+                }
                 promotion={
                   this.props.promotions.filter(
                     (promotion) => promotion.featured
@@ -59,7 +71,16 @@ class Main extends React.Component {
               />
             }
           />
-          <Route path="/menu" element={<Menu dishes={this.props.dishes} />} />
+          <Route
+            path="/menu"
+            element={
+              <Menu
+                dishes={this.props.dishes?.dishes}
+                isLoading={this.props.dishes.isLoading}
+                errMess={this.props.dishes.errMess}
+              />
+            }
+          />
           <Route path="/menu/:dishId" element={<DishWithId />} />
           <Route path="/contactus" element={<Contact />} />
           <Route
@@ -70,7 +91,9 @@ class Main extends React.Component {
             path="*"
             element={
               <Home
-                dish={this.props.dishes.filter((dish) => dish.featured)[0]}
+                dish={
+                  this.props.dishes.dishes.filter((dish) => dish.featured)[0]
+                }
                 promotion={
                   this.props.promotions.filter(
                     (promotion) => promotion.featured
@@ -93,6 +116,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addComment: (dishId, rating, author, comment) =>
       dispatch(addComment(dishId, rating, author, comment)),
+    fetchDishes: () => dispatch(fetchDishes()),
   };
 };
 

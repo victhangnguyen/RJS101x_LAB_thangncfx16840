@@ -8,6 +8,8 @@ import {
   BreadcrumbItem,
 } from 'reactstrap';
 import { Link, useParams } from 'react-router-dom';
+//! imp Components
+import { Loading } from './LoadingComponent';
 
 //! Presentational Component
 function RenderMenuItem({ dish, onClick }) {
@@ -33,23 +35,42 @@ const Menu = (props) => {
     );
   });
 
-  return (
-    <div className="container">
-      <div className="row">
-        <Breadcrumb>
-          <BreadcrumbItem>
-            <Link to="/home">Home</Link>
-          </BreadcrumbItem>
-          <BreadcrumbItem active>Menu</BreadcrumbItem>
-        </Breadcrumb>
-        <div className="col-12">
-          <h3>Menu</h3>
-          <hr />
+  if (props.isLoading) {
+    //! pending
+    return (
+      <div className="container">
+        <div className="row">
+          <Loading />
         </div>
       </div>
-      <div className="row">{menu}</div>
-    </div>
-  );
+    );
+  } else if (props.errMess) {
+    //! rejected
+    return (
+      <div className="container">
+        <div className="row">{props.errMess}</div>
+      </div>
+    );
+  }
+  //! fulfilled
+  else
+    return (
+      <div className="container">
+        <div className="row">
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to="/home">Home</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>Menu</BreadcrumbItem>
+          </Breadcrumb>
+          <div className="col-12">
+            <h3>Menu</h3>
+            <hr />
+          </div>
+        </div>
+        <div className="row">{menu}</div>
+      </div>
+    );
 };
 
 export default Menu;
