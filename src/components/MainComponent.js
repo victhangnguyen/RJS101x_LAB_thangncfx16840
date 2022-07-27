@@ -9,15 +9,8 @@ import Menu from './MenuComponent';
 import DishDetail from './DishdetailComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
-
-const mapStateToProps = (state) => {
-  return {
-    dishes: state.dishes,
-    comments: state.comments,
-    promotions: state.promotions,
-    leaders: state.leaders,
-  };
-};
+//! imp Redux Actions
+import { addComment } from '../redux/actions/commentActions';
 
 class Main extends React.Component {
   // constructor(props) {
@@ -39,8 +32,9 @@ class Main extends React.Component {
             )[0]
           }
           comments={this.props.comments.filter(
-            (commet) => commet.dishId === parseInt(params.dishId, 10)
+            (comment) => comment.dishId === parseInt(params.dishId, 10)
           )}
+          addComment={this.props.addComment}
         />
       );
     };
@@ -95,4 +89,20 @@ class Main extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Main);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addComment: (dishId, rating, author, comment) =>
+      dispatch(addComment(dishId, rating, author, comment)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    dishes: state.dishes,
+    comments: state.comments,
+    promotions: state.promotions,
+    leaders: state.leaders,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

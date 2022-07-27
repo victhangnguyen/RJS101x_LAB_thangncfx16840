@@ -14,7 +14,7 @@ import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 
-const Contact = () => {
+const Contact = (props) => {
   const formik = useFormik({
     initialValues: {
       firstName: '',
