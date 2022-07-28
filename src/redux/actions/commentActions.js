@@ -23,9 +23,28 @@ export const addComments = (comments) => ({
   payload: comments,
 });
 
-
 export const fetchComments = (dispatch) => {
   return fetch(baseUrl + 'comments')
+    .then(
+      //! this response is a fulfilled Promise, we need to throw this error
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          let error = new Error(
+            'Error ' + response.status + ': ' + response.statusText //! error.message
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        //! in this situation, when we dont hear back anything from the Server.
+        let errMess = new Error(error.message); //! error.message
+        throw errMess;
+      }
+    )
     .then((res) => res.json())
-    .then((comments) => dispatch(addComments(comments)));
+    .then((comments) => dispatch(addComments(comments)))
+    .catch((error) => dispatch(commentsFailed(error.message)));
 };

@@ -100,7 +100,7 @@ class Main extends React.Component {
             path="/aboutus"
             element={<About leaders={this.props.leaders.leaders} />}
           />
-          <Route
+          {/* <Route
             path="*"
             element={
               <Home
@@ -119,7 +119,7 @@ class Main extends React.Component {
                 }
               />
             }
-          />
+          /> */}
         </Routes>
         <Footer />
       </div>

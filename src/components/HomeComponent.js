@@ -20,7 +20,7 @@ function RenderCard({ item, isLoading, errMess }) {
     return <Loading />;
   } else if (errMess) {
     //! rejected
-    return <h3>{errMess}</h3>;
+    return <h3>{errMess && errMess}</h3>;
   }
   //! fulfilled
   else
@@ -39,6 +39,8 @@ function RenderCard({ item, isLoading, errMess }) {
 }
 
 function Home(props) {
+  console.log('%cHome_props: ', 'color: blue; font-weight: bold', props); //! __DEBUG __props
+  
   return (
     <div className="container">
       <div className="row">

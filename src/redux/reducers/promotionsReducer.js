@@ -12,7 +12,7 @@ export const promotionsReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: true,
-        errMess: '',
+        errMess: null,
         promotions: [],
       };
     case actionTypes.PROMOS_FAILED: // rejected

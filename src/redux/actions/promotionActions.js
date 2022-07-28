@@ -21,6 +21,26 @@ export const addPromos = (promos) => ({
 export const fetchPromos = () => (dispatch) => {
   dispatch(promosLoading());
   return fetch(baseUrl + 'promotions')
+    .then(
+      //! this response is a fulfilled Promise, we need to throw this error
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          let error = new Error(
+            'Error ' + response.status + ': ' + response.statusText //! error.message
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        //! in this situation, when we dont hear back anything from the Server.
+        let errMess = new Error(error.message); //! error.message
+        throw errMess;
+      }
+    )
     .then((res) => res.json())
-    .then((promos) => dispatch(addPromos(promos)));
+    .then((promos) => dispatch(addPromos(promos)))
+    .catch(error => dispatch(promosFailded(error.message)));
 };
