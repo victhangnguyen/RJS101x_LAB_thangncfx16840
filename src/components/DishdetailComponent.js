@@ -63,7 +63,7 @@ function RenderComments(props) {
           );
         })}
       </ul>
-      <CommentForm dishId={props.dishId} addComment={props.addComment} />
+      <CommentForm dishId={props.dishId} postComment={props.postComment} />
     </div>
   );
 }
@@ -85,10 +85,10 @@ const CommentForm = (props) => {
     },
     onSubmit: (values) => {
       toggleModal();
-      props.addComment(
+      props.postComment(
         props.dishId,
         values.rating,
-        values.author,
+        values.name,
         values.comment
       );
     },
@@ -190,7 +190,8 @@ const DishDetail = (props) => {
           <RenderComments
             comments={props.comments}
             dishId={props.dish.id}
-            addComment={props.addComment}
+            // addComment={props.addComment}
+            postComment={props.postComment}
           />
         </div>
       </div>

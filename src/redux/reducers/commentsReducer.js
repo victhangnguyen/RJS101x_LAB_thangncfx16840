@@ -10,8 +10,8 @@ export const commentsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_COMMENT:
       const comment = action.payload;
-      comment.id = state.comments.length;
-      comment.date = new Date().toISOString();
+      // comment.id = state.comments.length;
+      // comment.date = new Date().toISOString();
       return { ...state, comments: state.comments.concat(comment) };
 
     case actionTypes.ADD_COMMENTS:

@@ -39,8 +39,8 @@ function RenderCard({ item, isLoading, errMess }) {
 }
 
 function Home(props) {
-  console.log('%cHome_props: ', 'color: blue; font-weight: bold', props); //! __DEBUG __props
-  
+  console.log('%cHome_props render', 'color: red; font-weight: bold'); //! __DEBUG __props
+    
   return (
     <div className="container">
       <div className="row">

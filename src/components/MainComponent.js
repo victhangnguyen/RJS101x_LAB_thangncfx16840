@@ -10,9 +10,8 @@ import DishDetail from './DishdetailComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
 //! imp Redux Actions
-import { addComment } from '../redux/actions/commentActions';
 import { fetchDishes } from '../redux/actions/dishActions';
-import { fetchComments } from '../redux/actions/commentActions';
+import { fetchComments, postComment } from '../redux/actions/commentActions';
 import { fetchPromos } from '../redux/actions/promotionActions';
 import { fetchLeaders } from '../redux/actions/leaderActions';
 
@@ -49,7 +48,8 @@ class Main extends React.Component {
             (comment) => comment.dishId === parseInt(params.dishId, 10)
           )}
           commentsErrMess={this.props.comments.errMess}
-          addComment={this.props.addComment}
+          postComment={this.props.postComment}
+          // addComment={this.props.addComment}
         />
       );
     };
@@ -129,10 +129,10 @@ class Main extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addComment: (dishId, rating, author, comment) =>
-      dispatch(addComment(dishId, rating, author, comment)),
     fetchDishes: () => dispatch(fetchDishes()),
-    fetchComments: () => dispatch(fetchComments),
+    fetchComments: () => dispatch(fetchComments()),
+    postComment: (dishId, rating, author, comment) =>
+      dispatch(postComment(dishId, rating, author, comment)),
     fetchPromos: () => dispatch(fetchPromos()),
     fetchLeaders: () => dispatch(fetchLeaders()),
   };
