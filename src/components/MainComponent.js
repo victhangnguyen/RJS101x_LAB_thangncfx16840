@@ -113,6 +113,7 @@ class Main extends React.Component {
               />
               <Route path="*" element={<HomeComponent />} />
             </Routes>
+            
           </CSSTransition>
         </TransitionGroup>
         <Footer />

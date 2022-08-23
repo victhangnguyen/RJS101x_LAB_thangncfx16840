@@ -31,7 +31,6 @@ function RenderCard({ item, isLoading, errMess }) {
           <CardTitle className="fw-bold">{item?.name}</CardTitle>
           {item?.designation && (
             <CardSubtitle>{item?.designation}</CardSubtitle>
-            <p>Hello</p>
           )}
           <CardText>{item?.description}</CardText>
         </CardBody>
